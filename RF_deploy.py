@@ -18,20 +18,21 @@ Script loads the Random Forest classifer trained to distinguish between polyA an
 
 def main():
     PATH = os.getcwd()
-    
-    if len(sys.argv) ==1:
-        sys.exit('No input file was passed. Exiting...')
-    else:
-        expr_input = sys.argv[1]
-    
-    if len(sys.argv) !=3:
-        out = PATH+'out.tsv'
-    else:
-        out = sys.argv[2]
-    
+
+    ########----------------------Command line arguments--------------------##########
+    parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
+
+    parser.add_argument('-i', '--input', default=None, type=str, required=True, help='Inpy expression file (samples x genes')
+    parser.add_argument('-o', '--output', default='out.tsv', type=str, required=False, help='Output prediction file')
+    args=parser.parse_args()
+
+    ########----------------------Command line arguments--------------------##########
+
+    expr_input = args.input
+    out = args.output
     
     print('reading input...') 
-    expr_input = pd.read_csv(expr_input, sep='\t', index_col=0)
+    expr_input = pd.read_csv(expr_input, sep='\t', index_col=0, nrows=20)
     
     model = pickle.load(open(PATH+'/RiboVsPoly.sav', 'rb'))
     print(model)
@@ -40,7 +41,6 @@ def main():
     predict_proba = model.predict_proba(expr_input)
     
 
-    assert all(predictions)==0
     predictions = pd.DataFrame(np.hstack([predictions.reshape(-1,1), predict_proba]), index=expr_input.index, columns=['Ribo', 'Proba_0', 'Proba_1'])
 
     predictions.to_csv(out, sep='\t')
