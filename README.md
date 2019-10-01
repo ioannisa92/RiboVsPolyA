@@ -1,6 +1,6 @@
 # Ribo-deplete vs PolyA Library detectio
 
-Simple classifier for detecting ribo-deplete libraries from polyA libraries
+Simple classifier for distinguishing ribo-deplete libraries from polyA libraries
 
 ---
 # Usage
