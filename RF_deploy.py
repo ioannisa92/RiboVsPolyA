@@ -18,6 +18,7 @@ Script loads the Random Forest classifer trained to distinguish between polyA an
 
 def main():
     PATH = os.getcwd()
+    classifier_genes = np.loadtxt('ClassifierGenes.txt', dtype='str')
 
     ########----------------------Command line arguments--------------------##########
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
@@ -32,7 +33,14 @@ def main():
     out = args.output
     
     print('reading input...') 
-    expr_input = pd.read_csv(expr_input, sep='\t', index_col=0, nrows=20)
+    expr_input = pd.read_csv(expr_input, sep='\t', index_col=0)
+
+    '''
+    Problem will arise in the following line in the case genes do not match the inputs genes.
+    TODO: add script that fills in dummy genes with zero values
+    ''' 
+
+    expr_input = expr_input.T.loc[classifier_genes].T # making sure genes are correct for classifier
     
     model = pickle.load(open(PATH+'/RiboVsPoly.sav', 'rb'))
     print(model)
