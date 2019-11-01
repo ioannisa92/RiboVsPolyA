@@ -8,7 +8,7 @@ Simple classifier for distinguishing ribo-deplete libraries from polyA libraries
 ## Pull the image:
 
 ```
-docker pull ioannisa92:ribo_vs_polya
+docker pull ioannisa92/ribo_vs_polya
 ```
 
 ## Run the following command to mount your data files, and export the results:
