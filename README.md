@@ -3,8 +3,8 @@
 Simple classifier for distinguishing ribo-deplete libraries from polyA libraries
 
 In the examples folders, jupyter notebooks are provided for:
-> * Data processes (balancing disease prevalanecne)
-> * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
+  * Data processes (balancing disease prevalanecne)
+  * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
 
 ---
 # Usage
