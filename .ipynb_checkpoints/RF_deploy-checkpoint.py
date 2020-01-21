@@ -44,6 +44,7 @@ def gene_checker(input_file):
      
 def main():
     PATH = os.getcwd()
+    classifier_genes = np.loadtxt('ClassifierGenes.txt', dtype='str')
 
     ########----------------------Command line arguments--------------------##########
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
