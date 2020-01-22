@@ -67,7 +67,7 @@ def main():
     print(expr_input.shape)
 
     print('applying model...')
-    model = pickle.load(open(PATH+'/RiboVsPoly.sav', 'rb'))
+    model = pickle.load(open(PATH+'/RiboVsPoly_unbalanced.sav', 'rb'))
     print(model)
     
     predictions = model.predict(expr_input)
