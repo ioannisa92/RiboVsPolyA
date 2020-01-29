@@ -2,12 +2,13 @@
 
 Simple classifier for distinguishing ribo-deplete libraries from polyA libraries
 
-In the examples folders, jupyter notebooks are provided for:
+In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/examples), jupyter notebooks are provided for:
   * Data processes (balancing disease prevalanecne)
   * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
 
 ---
-# Usage
+
+# Docker Usage
 
 ## Pull the image:
 
