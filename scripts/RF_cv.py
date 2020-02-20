@@ -2,7 +2,7 @@
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import StratifiedKFold, GridSearchCV
 from sklearn.metrics import f1_score, precision_recall_curve,average_precision_score
 from sklearn.ensemble import RandomForestClassifier
 import pickle
@@ -42,6 +42,16 @@ def cross_validate(x, y,folds=10, model=None):
     
     return cv_results
 
+def gscv(X,Y, model, parameters, folds=10, jobs=1):
+    clf = GridSearchCV(model, parameters, cv=folds, n_jobs=jobs)
+    print("grid searching...")
+    clf.fit(X, Y.values.ravel())
+    results = clf.cv_results_
+    best_model = clf.best_estimator_
+    best_params = clf.best_params_
+    
+    return results, best_model, best_params
+
 def get_best_model(cv_results):
     '''
     Function takes in results from function cross_validate and finds the nest estimator
@@ -58,33 +68,7 @@ def get_best_model(cv_results):
     return best_score, best_estimator
     
     
-def main():
-    ########----------------------Command line arguments--------------------##########
-    parser = argparse.ArgumentParser(description="Arguments for RiboVsPoly Classifier")
-
-    parser.add_argument('-X', '--data', default=None, type=str, required=True, help='Classifier input data: expression data')
-    parser.add_argument('-Y', '--labels', default=None, type=str, required=True, help='Labels for each sample: Ribo (1), Poly (0)')
-    parser.add_argument('-save_best', '--best', action='store_true', required=False, help='whether to save best model. Use with -model_out')
-    parser.add_argument('-model_out', '--model_file', default='model.sav', type=str, required=False, help='model filename (full path). Use with -save_best')
-    args=parser.parse_args()
-    ########----------------------Command line arguments--------------------##########
-    
-    data = args.data
-    labels = args.labels
-    save_best = args.best
-    model_fn = args.model_file
-
-    classifier_genes = np.loadtxt('./data/ClassifierGenes.txt', dtype='str')
-
-    if '.tsv' in data:
-        X = pd.read_csv(data, sep='\t', index_col=0)
-        Y = pd.read_csv(labels, sep='\t', index_col=0)
-    else:
-        raise ValueError('File does not appear to be tab delimited due to erronious extension. Make sure the file is tab delimited')
-
-    X = X.T.loc[classifier_genes].T #making sure genes match dimensionality of trained classifier
-    X = X.fillna(0)
-    
+def cv_main(X, Y):
 
     model = RandomForestClassifier(n_estimators=1000, max_depth=5,random_state=42, oob_score=True, n_jobs=-1, verbose=1)
     cv_results = cross_validate(X.values, Y.values, model=model)
@@ -92,11 +76,67 @@ def main():
     cv_mean_precision = np.mean(cv_results['average_precision'])
     print('10-Fold CV average precision: %.3f'%cv_mean_precision)
    
-    if save_best:
-        best_score, best_estimator = get_best_model(cv_results)
-        pickle.dump(best_estimator, open(model_fn, 'wb'))
-      
-    #np.save('./results/RF_10-foldCV.npy',cv_results)
+    best_score, best_estimator = get_best_model(cv_results)
+    return best_score, cv_results, best_estimator
+    
 
 if __name__ == "__main__":
-    main()
+    ########----------------------Command line arguments--------------------##########
+    parser = argparse.ArgumentParser(description="Arguments for RiboVsPoly Classifier")
+
+    parser.add_argument('-X', '--data', default=None, type=str, required=True, help='Classifier input data: expression data')
+    parser.add_argument('-Y', '--labels', default=None, type=str, required=True, help='Labels for each sample: Ribo (1), Poly (0)')
+    parser.add_argument('-cv', '--CV', action='store_true', required=False, help='whether to perform cross validation')
+    parser.add_argument('-grid_search', '--GRIDCV', action='store_true', required=False, help='whether to perform parameter selection')
+    parser.add_argument('-model_out', '--model_file', default='model.sav', type=str, required=False, help='model filename (full path). Use with -save_best')
+    args=parser.parse_args()
+    ########----------------------Command line arguments--------------------##########
+
+    data = args.data
+    labels = args.labels
+    model_fn = args.model_file
+    cv = args.CV
+    grid_search = args.GRIDCV
+
+    if '.tsv' in data:
+        X = pd.read_csv(data, sep='\t', index_col=0)
+        Y = pd.read_csv(labels, sep='\t', index_col=0)
+    else:
+        raise ValueError('File does not appear to be tab delimited due to erronious extension. Make sure the file is tab delimited')
+    
+
+    if cv:
+        best_score, cv_results, best_estimator  = cv_main(X, Y, save_best=save_best)
+        pickle.dump(best_estimator, open(model_fn, 'wb'))
+        np.save('../results/RF_10-foldCV.npy',cv_results)
+
+    if grid_search:
+        model=RandomForestClassifier()
+        param_grid={'n_estimators':np.arange(100,2000,200), 'max_depth': np.arange(1,10, 2), "min_samples_leaf":np.arange(1,10,2)}
+        results, best_model, best_params = gscv(X,Y, model, parameters=param_grid, jobs=13)
+        print("saving best model...")
+        pickle.dump(best_model, open(model_fn, 'wb'))
+        print("saving resutls...")
+        np.save('../results/RF_GridSearchCV_balanced.npy',results)
+        print(best_params)
+
+# unbalanced       
+RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=1, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=3, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=700,
+                       n_jobs=None, oob_score=False, random_state=None,
+                       verbose=0, warm_start=False)
+
+
+#balanced 
+RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+                       criterion='gini', max_depth=7, max_features='auto',
+                       max_leaf_nodes=None, max_samples=None,
+                       min_impurity_decrease=0.0, min_impurity_split=None,
+                       min_samples_leaf=1, min_samples_split=2,
+                       min_weight_fraction_leaf=0.0, n_estimators=500,
+                       n_jobs=None, oob_score=False, random_state=None,
+                       verbose=0, warm_start=False)

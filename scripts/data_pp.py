@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from scipy.sparse import issparse
 import matplotlib.pyplot as plt
-from keras_deep_graph_learning.examples.utils import *
+#from keras_deep_graph_learning.examples.utils import *
 def gene_intersection(dfs=None):
     # list of dfs needs to samples by genes
     # dfs is a list of dataframes
@@ -111,21 +111,25 @@ def high_variance(x,k=10000, inplace=False):
 
         return topk_genes
 
-def remove_low_info_genes(x):
-    if isinstance(x, pd.DataFrame):
-        X = x.values
-    if issparse(x):
-        X = x.todense()
-    else:
-        X = x
-
-    var = X.mean(axis=0) #gets mean expression of each gene
-    sd = X.std(axs=0) #gets std of expression of each gene
-
-    var_bool = (var>1)
-    sd_bool = (sd>0.5)
 
 def prepare_expr_data( df_list):
+    '''
+    If merge first is selected, dataframes are concatenated row-wise first, and the most variables genes are taken
+    If not, most variables are selectes, and the intersection of those genes is then used to subset each df 
+    Removing all-zero genes is 
+    '''
+
+    # First remove all zero genes
+    print('Removing all zero genes')
+    nonzero_df=[]
+    for d in df_list:
+        d = remove_allzero(d)
+        nonzero_df+=[d]
+    print('shape after...')
+    for d in nonzero_df:
+        print(d.shape)
+    
+    
     # First remove all zero genes
     print('Removing all zero genes')
     nonzero_df=[]
