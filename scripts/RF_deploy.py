@@ -33,7 +33,7 @@ def gene_checker(input_file):
     new_input_file; pandas df - shape (samples x genes)
     '''
     
-    classifier_genes = np.loadtxt('ClassifierGenes.txt', dtype='str')
+    classifier_genes = np.loadtxt('../data_test/ClassifierGenes.txt', dtype='str')
     new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
     
     # will fill genes that do not exist in the input with zero
@@ -43,7 +43,7 @@ def gene_checker(input_file):
     return new_input_file
      
 def main():
-    PATH = os.getcwd()
+    #PATH = os.getcwd()
 
     ########----------------------Command line arguments--------------------##########
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
@@ -67,7 +67,7 @@ def main():
     print(expr_input.shape)
 
     print('applying model...')
-    model = pickle.load(open(PATH+'/RiboVsPoly_unbalanced.sav', 'rb'))
+    model = pickle.load(open('../models/RiboVsPoly_balanced.sav', 'rb'))
     print(model)
     
     predictions = model.predict(expr_input)
