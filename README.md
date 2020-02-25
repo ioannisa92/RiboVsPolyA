@@ -12,7 +12,7 @@ Running the following :
 ```
 python setup.py
 ```
-will download Treehouse data and make balanced and unbalanced datasets
+will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
 
 ---
 
