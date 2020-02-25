@@ -5,6 +5,14 @@ Simple classifier for distinguishing ribo-deplete libraries from polyA libraries
 In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/examples), jupyter notebooks are provided for:
   * Data pre-processing (balancing disease prevalanecne)
   * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
+  * The notebooks also have the corresponding script version under [scripts](https://github.com/ioannisa92/RiboVsPolyA/tree/master/scripts)
+  
+
+Running the following :
+```
+python setup.py
+```
+will download Treehouse data and make balanced and unbalanced datasets
 
 ---
 
