@@ -13,8 +13,6 @@ Two classifiers were developed:
   * UnbalancedDisease.ipynb: shows non-balanced diseases between the two datasets
     * Notebook contains Poly_reduced.csv which represents 361 randomly selected samples from the [Treehouse PolyA Compendium](https://treehousegenomics.soe.ucsc.edu/public-data/#tumor_v10_polyA)
 
-# Rank Correlation Analysis
-[Corellation Notebook](https://github.com/ioannisa92/RiboVsPolyA_analysis/blob/master/RankCorrelation.ipynb) shows the correlation of the rank of genes as determined by importance scoring from balanced and unbalanced classifiers
 
 # Balanced (Run1) Classification Analysis
 [Balanced RF Analysis Notebook](https://github.com/ioannisa92/RiboVsPolyA/blob/master/examples/RF_train_Balanced.ipynb) shows optimization and performance of the disease *balanced* classifier
