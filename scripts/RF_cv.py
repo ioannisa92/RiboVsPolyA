@@ -120,23 +120,23 @@ if __name__ == "__main__":
         np.save('../results/RF_GridSearchCV_balanced.npy',results)
         print(best_params)
 
-# unbalanced       
-RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
-                       criterion='gini', max_depth=1, max_features='auto',
-                       max_leaf_nodes=None, max_samples=None,
-                       min_impurity_decrease=0.0, min_impurity_split=None,
-                       min_samples_leaf=3, min_samples_split=2,
-                       min_weight_fraction_leaf=0.0, n_estimators=700,
-                       n_jobs=None, oob_score=False, random_state=None,
-                       verbose=0, warm_start=False)
+        # unbalanced best params 
+        #RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+        #                       criterion='gini', max_depth=1, max_features='auto',
+        #                       max_leaf_nodes=None, max_samples=None,
+        #                       min_impurity_decrease=0.0, min_impurity_split=None,
+        #                       min_samples_leaf=3, min_samples_split=2,
+        #                       min_weight_fraction_leaf=0.0, n_estimators=700,
+        #                       n_jobs=None, oob_score=False, random_state=None,
+        #                       verbose=0, warm_start=False)
 
 
-#balanced 
-RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
-                       criterion='gini', max_depth=7, max_features='auto',
-                       max_leaf_nodes=None, max_samples=None,
-                       min_impurity_decrease=0.0, min_impurity_split=None,
-                       min_samples_leaf=1, min_samples_split=2,
-                       min_weight_fraction_leaf=0.0, n_estimators=500,
-                       n_jobs=None, oob_score=False, random_state=None,
-                       verbose=0, warm_start=False)
+        #balanced best params
+        #RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+        #                       criterion='gini', max_depth=7, max_features='auto',
+        #                       max_leaf_nodes=None, max_samples=None,
+        #                       min_impurity_decrease=0.0, min_impurity_split=None,
+        #                       min_samples_leaf=1, min_samples_split=2,
+        #                       min_weight_fraction_leaf=0.0, n_estimators=500,
+        #                       n_jobs=None, oob_score=False, random_state=None,
+        #                       verbose=0, warm_start=False)
