@@ -1,13 +1,1 @@
-init_data_pp:
-    - Does selection of top 30k first
-    - Subsets both poly and ribo based on intersected genes
-    - Randomly selects n=ribo_samples from poly compendium
-    - Concatenated reduced poly compendium with ribo
-    - Creates the unbalanced dataset
 
-init_data_ppv2:
-    - Poly is reduced first based on n=ribo_samples
-    - Poly and ribo are merged first
-    - Then selction of op 30k most var genes is done
-    - No intersection needed
-    
