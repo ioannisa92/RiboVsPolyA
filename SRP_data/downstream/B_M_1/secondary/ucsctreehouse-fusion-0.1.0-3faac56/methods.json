@@ -1,0 +1,24 @@
+{
+    "inputs": [
+        "primary/original/B_M_1/B_M_1_1.fastq.gz", 
+        "primary/original/B_M_1/B_M_1_2.fastq.gz"
+    ], 
+    "pipeline": {
+        "source": "https://github.com/UCSC-Treehouse/fusion", 
+        "docker": {
+            "url": "https://hub.docker.com/r/ucsctreehouse/fusion", 
+            "version": "0.1.0", 
+            "hash": "sha256:3faac562666363fa4a80303943a8f5c14854a5f458676e1248a956c13fb534fd"
+        }
+    }, 
+    "end": "2020-05-15T09:38:39.700618", 
+    "outputs": [
+        "downstream/B_M_1/secondary/ucsctreehouse-fusion-0.1.0-3faac56/Log.final.out", 
+        "downstream/B_M_1/secondary/ucsctreehouse-fusion-0.1.0-3faac56/star-fusion-non-filtered.final", 
+        "downstream/B_M_1/secondary/ucsctreehouse-fusion-0.1.0-3faac56/star-fusion-gene-list-filtered.final"
+    ], 
+    "start": "2020-05-15T08:59:40.585810", 
+    "user": "aglyle", 
+    "sample_id": "B_M_1", 
+    "treeshop_version": "7502503"
+}
