@@ -1,0 +1,34 @@
+{
+    "inputs": [
+        "primary/original/B_M_1/B_M_1_1.fastq.gz", 
+        "primary/original/B_M_1/B_M_1_2.fastq.gz"
+    ], 
+    "pipeline": {
+        "source": "https://github.com/BD2KGenomics/toil-rnaseq", 
+        "docker": {
+            "url": "https://quay.io/ucsc_cgl/rnaseq-cgl-pipeline", 
+            "version": "3.3.4-1.12.3", 
+            "hash": "sha256:785eee9f750ab91078d84d1ee779b6f74717eafc09e49da817af6b87619b0756"
+        }
+    }, 
+    "end": "2020-05-15T07:02:55.735646", 
+    "outputs": [
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/RSEM/rsem_genes.results", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/RSEM/rsem_isoforms.results", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/RSEM/Hugo/rsem_genes.hugo.results", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/RSEM/Hugo/rsem_isoforms.hugo.results", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/Kallisto/run_info.json", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/Kallisto/abundance.tsv", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/Kallisto/abundance.h5", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/fastQC/R1_fastqc.html", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/fastQC/R1_fastqc.zip", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/fastQC/R2_fastqc.html", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/fastQC/R2_fastqc.zip", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/STAR/Log.final.out", 
+        "downstream/B_M_1/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/QC/STAR/SJ.out.tab"
+    ], 
+    "start": "2020-05-15T01:51:57.676596", 
+    "user": "aglyle", 
+    "sample_id": "B_M_1", 
+    "treeshop_version": "7502503"
+}

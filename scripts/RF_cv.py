@@ -89,6 +89,7 @@ if __name__ == "__main__":
     parser.add_argument('-cv', '--CV', action='store_true', required=False, help='whether to perform cross validation')
     parser.add_argument('-grid_search', '--GRIDCV', action='store_true', required=False, help='whether to perform parameter selection')
     parser.add_argument('-model_out', '--model_file', default='model.sav', type=str, required=False, help='model filename (full path). Use with -save_best')
+    parser.add_argument('-results_out', '--results_file', default='model.sav', type=str, required=False, help='resukts filename (full path)')
     args=parser.parse_args()
     ########----------------------Command line arguments--------------------##########
 
@@ -97,6 +98,7 @@ if __name__ == "__main__":
     model_fn = args.model_file
     cv = args.CV
     grid_search = args.GRIDCV
+    results_out = args.results_file
 
     if '.tsv' in data:
         X = pd.read_csv(data, sep='\t', index_col=0)
@@ -112,12 +114,12 @@ if __name__ == "__main__":
 
     if grid_search:
         model=RandomForestClassifier()
-        param_grid={'n_estimators':np.arange(100,2000,200), 'max_depth': np.arange(1,10, 2), "min_samples_leaf":np.arange(1,10,2)}
+        param_grid={'n_estimators':np.arange(100,2000,100), 'max_depth': np.arange(1,10,1), "min_samples_leaf":np.arange(1,10,1),"min_samples_split":np.arange(2,20,2)}
         results, best_model, best_params = gscv(X,Y, model, parameters=param_grid, jobs=13)
         print("saving best model...")
         pickle.dump(best_model, open(model_fn, 'wb'))
         print("saving resutls...")
-        np.save('../results/RF_GridSearchCV_balanced.npy',results)
+        np.save(results_out,results)
         print(best_params)
 
         # unbalanced best params 

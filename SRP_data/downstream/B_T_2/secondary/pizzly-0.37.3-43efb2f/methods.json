@@ -1,0 +1,22 @@
+{
+    "inputs": [
+        "downstream/B_T_2/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/Kallisto/abundance.h5", 
+        "downstream/B_T_2/secondary/ucsc_cgl-rnaseq-cgl-pipeline-3.3.4-785eee9/Kallisto/fusion.txt"
+    ], 
+    "pipeline": {
+        "source": "https://github.com/UCSC-Treehouse/docker-pizzly", 
+        "docker": {
+            "url": "https://hub.docker.com/r/ucsctreehouse/pizzly", 
+            "version": "0.37.3", 
+            "hash": "sha256:43efb2faf95f9d6bfd376ce6b943c9cf408fab5c73088023d633e56880ac1ea8"
+        }
+    }, 
+    "end": "2020-05-15T14:54:15.596824", 
+    "outputs": [
+        "downstream/B_T_2/secondary/pizzly-0.37.3-43efb2f/pizzly-fusion.final"
+    ], 
+    "start": "2020-05-15T14:52:55.350406", 
+    "user": "aglyle", 
+    "sample_id": "B_T_2", 
+    "treeshop_version": "7502503"
+}

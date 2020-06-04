@@ -1,0 +1,21 @@
+{
+    "inputs": [
+        "/private/groups/treehouse/working-projects/aglyle/RiboD_Classifier_Validation//primary/derived/B_M_3/sortedByCoord.md.bam"
+    ], 
+    "pipeline": {
+        "source": "https://github.com/UCSC-Treehouse/mini-var-call", 
+        "docker": {
+            "url": "https://hub.docker.com/r/ucsctreehouse/mini-var-call", 
+            "version": "0.0.1", 
+            "hash": "sha256:197642937956ae73465ad2ef4b42501681ffc3ef07fecb703f58a3487eab37ff"
+        }
+    }, 
+    "end": "2020-05-15T10:01:34.650642", 
+    "outputs": [
+        "downstream/B_M_3/secondary/ucsctreehouse-mini-var-call-0.0.1-1976429/mini.ann.vcf"
+    ], 
+    "start": "2020-05-15T09:56:07.826038", 
+    "user": "aglyle", 
+    "sample_id": "B_M_3", 
+    "treeshop_version": "7502503"
+}

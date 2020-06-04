@@ -33,7 +33,7 @@ def gene_checker(input_file):
     new_input_file; pandas df - shape (samples x genes)
     '''
     
-    classifier_genes = np.loadtxt('../data_test/ClassifierGenes.txt', dtype='str')
+    classifier_genes = np.loadtxt('./data_test/ClassifierGenes.txt', dtype='str')
     new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
     
     # will fill genes that do not exist in the input with zero
@@ -49,6 +49,7 @@ def main():
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
 
     parser.add_argument('-i', '--input', default=None, type=str, required=True, help='Input expression file (samples x genes')
+    parser.add_argument('-model', '--MODEL', type=str, required=True, help='Path to saved model')
     parser.add_argument('-o', '--output', default='out.tsv', type=str, required=False, help='TSV Output prediction file')
     args=parser.parse_args()
 
@@ -56,7 +57,8 @@ def main():
 
     expr_input = args.input
     out = args.output
-    
+    model = args.MODEL
+
     print('reading input...') 
     expr_input = pd.read_csv(expr_input, sep='\t', index_col=0)
 
@@ -67,7 +69,7 @@ def main():
     print(expr_input.shape)
 
     print('applying model...')
-    model = pickle.load(open('../models/RiboVsPoly_balanced.sav', 'rb'))
+    model = pickle.load(open(model, 'rb'))
     print(model)
     
     predictions = model.predict(expr_input)

@@ -1,0 +1,22 @@
+{
+    "inputs": [
+        "primary/original/C_M_2/C_M_2_1.fastq.gz", 
+        "primary/original/C_M_2/C_M_2_2.fastq.gz"
+    ], 
+    "pipeline": {
+        "source": "https://github.com/gliderlabs/docker-alpine", 
+        "docker": {
+            "url": "https://hub.docker.com/alpine", 
+            "version": "3.7.0", 
+            "hash": "sha256:ccba511b1d6b5f1d83825a94f9d5b05528db456d9cf14a1ea1db892c939cda64"
+        }
+    }, 
+    "end": "2020-05-15T23:41:44.073271", 
+    "outputs": [
+        "downstream/C_M_2/secondary/md5sum-3.7.0-ccba511/md5"
+    ], 
+    "start": "2020-05-15T23:41:24.422322", 
+    "user": "aglyle", 
+    "sample_id": "C_M_2", 
+    "treeshop_version": "7502503"
+}
