@@ -1,9 +1,0 @@
-{
-	"n_targets": 197044,
-	"n_bootstraps": 100,
-	"n_processed": 49867656,
-	"kallisto_version": "0.43.1",
-	"index_version": 10,
-	"start_time": "Sat May 16 15:00:15 2020",
-	"call": "kallisto quant -i /data/kallisto_hg38.idx -t 12 -o /data/ -b 100 --fusion /data/R1.fastq /data/R2.fastq"
-}
