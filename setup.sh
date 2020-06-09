@@ -1,5 +1,6 @@
 # create data dolder
 mkdir data_test
+mkdir results
 
 echo Downloading Expression and Cilinical PolyA and RiboD files...
 # Download Treehouse PolyA, RiboD expression files
