@@ -20,8 +20,8 @@ DATADIR = './data_test/'
 
 # the following files were prepared during setup.py
 # both Poly.tsv and Ribo.tsv are described by the same genes
-poly = pd.read_csv(DATADIR+'TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv', sep='\t', index_col=0)
-ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0)
+poly = pd.read_csv(DATADIR+'TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv', sep='\t', index_col=0).T # (samples,genes)
+ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0).T # (sampls,genes)
 
 
 poly.shape
