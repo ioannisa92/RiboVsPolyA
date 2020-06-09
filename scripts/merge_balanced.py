@@ -143,11 +143,13 @@ merged_disease_common.shape
 
 (poly_clinical_disease_common_sumbsampled_final.disease.value_counts()/poly_clinical_disease_common_sumbsampled_final.disease.value_counts().sum()).plot(kind='bar')
 plt.title('Final Poly Disease Prevalence', fontsize=15)
+plt.xlabel(rotation=45)
 plt.show()
 plt.close()
 
 (ribo_clinical_disease_common.disease.value_counts()/ribo_clinical_disease_common.disease.value_counts().sum()).plot(kind='bar')
 plt.title('Final Ribo Disease Prevalence', fontsize=15)
+plt.xlabel(rotation=45)
 plt.show()
 plt.close()
 
