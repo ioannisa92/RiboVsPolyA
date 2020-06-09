@@ -10,7 +10,7 @@ In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/e
 
 Running the following :
 ```
-python setup.py
+bash setup.sh
 ```
 will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
 
