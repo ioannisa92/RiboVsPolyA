@@ -80,7 +80,7 @@ def merge_data(dfs, fn=None):
 
 def main():
     global DATADIR
-    DATADIR = '../data_test/'
+    DATADIR = './data_test/'
     ribo = DATADIR+"TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv" 
     poly = DATADIR+"TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv"
     
