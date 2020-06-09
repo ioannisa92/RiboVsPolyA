@@ -12,15 +12,16 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-
+global DATADIR
+DATADIR = './data_test/'
 
 # ## Loading PolyA and RiboD gene expression data
 
 
 # the following files were prepared during setup.py
 # both Poly.tsv and Ribo.tsv are described by the same genes
-poly = pd.read_csv('../data_test/Poly.tsv', sep='\t', index_col=0)
-ribo = pd.read_csv('../data_test/Ribo.tsv', sep='\t', index_col=0)
+poly = pd.read_csv(DATADIR+'TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv', sep='\t', index_col=0)
+ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0)
 
 
 poly.shape
@@ -28,8 +29,8 @@ ribo.shape
 
 
 
-poly_clinical = pd.read_csv('../data_test/clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
-ribo_clinical = pd.read_csv('../data_test/TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-25.tsv', sep='\t', index_col=0)
+poly_clinical = pd.read_csv('./data_test/clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
+ribo_clinical = pd.read_csv('./data_test/TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-25.tsv', sep='\t', index_col=0)
 
 poly_single_disease = poly_clinical.disease.value_counts().index.values[(poly_clinical.disease.value_counts()==1)]
 ribo_single_disease = ribo_clinical.disease.value_counts().index.values[(ribo_clinical.disease.value_counts()==1)]
@@ -133,8 +134,8 @@ merged_disease_common = pd.concat([ribo_disease_common, poly_subsampled_final], 
 merged_labels = pd.DataFrame(all_labels, index = merged_disease_common.index, columns = ['Ribo'])
 
 # saving file to disk
-merged_disease_common.to_csv('../data_test/MergedData_Balanced.tsv', sep='\t')
-merged_labels.to_csv('../data_test/MergedLabels_Balanced.tsv', sep='\t')
+merged_disease_common.to_csv('./data_test/MergedData_Balanced.tsv', sep='\t')
+merged_labels.to_csv('./data_test/MergedLabels_Balanced.tsv', sep='\t')
 
 merged_disease_common.shape
 
