@@ -1,6 +1,21 @@
 # create data dolder
-mkdir data_test
-mkdir results
+DATADIR="./data_test/"
+RESDIR="./results/"
+
+if [ -d "$DATADIR" ]; then
+  # Take action if $DIR exists. #
+  echo "${DATADIR} already exists"
+else
+    mkdir data_test
+fi
+
+if [ -d "$RESDIR" ]; then
+  # Take action if $DIR exists. #
+  echo "${RESDIR} already exists"
+else
+    mkdir results
+fi
+
 
 echo Downloading Expression and Cilinical PolyA and RiboD files...
 # Download Treehouse PolyA, RiboD expression files
