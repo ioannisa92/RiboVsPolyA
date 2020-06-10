@@ -149,7 +149,7 @@ plt.close()
 
 (ribo_clinical_disease_common.disease.value_counts()/ribo_clinical_disease_common.disease.value_counts().sum()).plot(kind='bar')
 plt.title('Final Ribo Disease Prevalence', fontsize=15)
-plt.xtcks(rotation=45)
+plt.xticks(rotation=45)
 plt.show()
 plt.close()
 

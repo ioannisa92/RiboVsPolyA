@@ -49,7 +49,7 @@ def main():
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
 
     parser.add_argument('-i', '--input', default=None, type=str, required=True, help='Input expression file (samples x genes')
-    parser.add_argument('-model', '--MODEL', type=str, required=True, help='Path to saved model')
+    parser.add_argument('-model', '--MODEL', type=str, required=False, default='../models/RiboVsPoly_balanced_max_depth_1.sav' help='Path to saved model')
     parser.add_argument('-o', '--output', default='out.tsv', type=str, required=False, help='TSV Output prediction file')
     args=parser.parse_args()
 
