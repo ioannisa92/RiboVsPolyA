@@ -136,7 +136,7 @@ merged_labels = pd.DataFrame(all_labels, index = merged_disease_common.index, co
 # saving file to disk
 merged_disease_common.to_csv('./data_test/MergedData_Balanced.tsv', sep='\t')
 merged_labels.to_csv('./data_test/MergedLabels_Balanced.tsv', sep='\t')
-
+poly_subsampled_final.to_csv('./data_test/Poly_reduced.tsv', sep='\t')
 merged_disease_common.shape
 
 # ## Now diseases are balanced in both datasets
