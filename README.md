@@ -8,11 +8,11 @@ In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/e
   * The notebooks also have the corresponding script version under [scripts](https://github.com/ioannisa92/RiboVsPolyA/tree/master/scripts)
   
 
-Running the following :
+To run the examples, first run the following :
 ```
 bash setup.sh
 ```
-will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
+It will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
 
 ---
 
