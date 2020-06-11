@@ -141,15 +141,13 @@ merged_disease_common.shape
 
 # ## Now diseases are balanced in both datasets
 
-(poly_clinical_disease_common_sumbsampled_final.disease.value_counts()/poly_clinical_disease_common_sumbsampled_final.disease.value_counts().sum()).plot(kind='bar')
+(poly_clinical_disease_common_sumbsampled_final.disease.value_counts()/poly_clinical_disease_common_sumbsampled_final.disease.value_counts().sum()).plot(kind='barh')
 plt.title('Final Poly Disease Prevalence', fontsize=15)
-plt.xticks(rotation=45)
 plt.show()
 plt.close()
 
-(ribo_clinical_disease_common.disease.value_counts()/ribo_clinical_disease_common.disease.value_counts().sum()).plot(kind='bar')
+(ribo_clinical_disease_common.disease.value_counts()/ribo_clinical_disease_common.disease.value_counts().sum()).plot(kind='barh')
 plt.title('Final Ribo Disease Prevalence', fontsize=15)
-plt.xticks(rotation=45)
 plt.show()
 plt.close()
 
