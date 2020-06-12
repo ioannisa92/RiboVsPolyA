@@ -164,11 +164,14 @@ ribo_labels = ribo_disease_common.shape[0]*[1]
 poly_labels = poly_subsampled_final.shape[0]*[0]
 all_labels = ribo_labels+poly_labels
 
+classifier_genes = np.loadtxt('../../data/ClassifierGenes.txt', dtype='str')
+
 # selecting top 5k most var genes
-ribo_disease_common,poly_subsampled_final  = select_mostvar([ribo_disease_common,poly_subsampled_final])
-ribo_disease_common.to_csv(DATADIR+"Ribo.tsv", sep="\t")
+#ribo_disease_common,poly_subsampled_final  = select_mostvar([ribo_disease_common,poly_subsampled_final])
+ribo_disease_common.T.loc[classifier_genes].T.to_csv(DATADIR+"Ribo.tsv", sep="\t")
 
 merged_disease_common = pd.concat([ribo_disease_common, poly_subsampled_final], axis=0)
+merged_disease_common = merged_disease_common.T.loc[classifier_genes].T
 merged_labels = pd.DataFrame(all_labels, index = merged_disease_common.index, columns = ['Ribo'])
 
 # saving file to disk
