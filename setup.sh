@@ -24,6 +24,10 @@ else
     mkdir plots
 fi
 
+echo Installing requirements...
+python -m pip install --no-cache-dir -r requirements.txt
+
+
 echo Downloading Expression and Cilinical PolyA and RiboD files...
 # Download Treehouse PolyA, RiboD expression files
 wget --quiet -O ${DATADIR}TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv https://xena.treehouse.gi.ucsc.edu/download/TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv
