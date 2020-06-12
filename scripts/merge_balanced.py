@@ -16,39 +16,6 @@ global DATADIR
 DATADIR = './data/'
 
 
-def select_mostvar(dfs, fns=None):
-    '''
-    scripts selects top k most var genes across all dfs
-    dfs; list - list of dataframes
-    fbs; list - list of filenames for saving
-
-    Returns
-    -------
-    dfs; list - list of dataframes but subsetted for top 30k
-
-    '''
-    original_shapes = []
-    for df in dfs:
-        original_shapes += [df.shape[0]]
-
-    new_df = pd.concat(dfs, axis=0)
-    new_df = all_data = remove_allzero(new_df)
-    new_df = high_variance(new_df,k=5000,inplace=True)
-
-    new_dfs = []
-    for i,df in enumerate(dfs):
-        if i==0:
-            df = new_df.iloc[:original_shapes[i]]
-        elif i==len(new_dfs)-1:
-            df = new_df.iloc[original_shapes[i-1]:]
-        else:
-            df = new_df.iloc[original_shapes[i-1]:original_shapes[i-1]+original_shapes[i]]
-
-        new_dfs +=[df]
-
-    return new_dfs
-
-
 # ## Loading PolyA and RiboD gene expression data
 
 
@@ -166,8 +133,6 @@ all_labels = ribo_labels+poly_labels
 
 classifier_genes = np.loadtxt('../../data/ClassifierGenes.txt', dtype='str')
 
-# selecting top 5k most var genes
-#ribo_disease_common,poly_subsampled_final  = select_mostvar([ribo_disease_common,poly_subsampled_final])
 ribo_disease_common.T.loc[classifier_genes].T.to_csv(DATADIR+"Ribo.tsv", sep="\t")
 
 merged_disease_common = pd.concat([ribo_disease_common, poly_subsampled_final], axis=0)
@@ -177,7 +142,7 @@ merged_labels = pd.DataFrame(all_labels, index = merged_disease_common.index, co
 # saving file to disk
 merged_disease_common.to_csv(DATADIR+'MergedData_Balanced.tsv', sep='\t')
 merged_labels.to_csv(DATADIR+'MergedLabels_Balanced.tsv', sep='\t')
-poly_subsampled_final.to_csv(DATADIR+'Poly_reduced.tsv', sep='\t')
+poly_subsampled_final.T.loc[classifier_genes].T.to_csv(DATADIR+'Poly_reduced.tsv', sep='\t')
 merged_disease_common.shape
 
 # ## Now diseases are balanced in both datasets
