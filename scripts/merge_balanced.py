@@ -131,7 +131,7 @@ ribo_labels = ribo_disease_common.shape[0]*[1]
 poly_labels = poly_subsampled_final.shape[0]*[0]
 all_labels = ribo_labels+poly_labels
 
-classifier_genes = np.loadtxt('../../data/ClassifierGenes.txt', dtype='str')
+classifier_genes = np.loadtxt(DATADIR+'ClassifierGenes.txt', dtype='str')
 
 ribo_disease_common.T.loc[classifier_genes].T.to_csv(DATADIR+"Ribo.tsv", sep="\t")
 
