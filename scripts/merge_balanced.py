@@ -30,8 +30,8 @@ ribo.shape
 
 
 
-poly_clinical = pd.read_csv('./data_test/clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
-ribo_clinical = pd.read_csv('./data_test/TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-25.tsv', sep='\t', index_col=0)
+poly_clinical = pd.read_csv(DATADIR+'clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
+ribo_clinical = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-25.tsv', sep='\t', index_col=0)
 
 poly_single_disease = poly_clinical.disease.value_counts().index.values[(poly_clinical.disease.value_counts()==1)]
 ribo_single_disease = ribo_clinical.disease.value_counts().index.values[(ribo_clinical.disease.value_counts()==1)]
