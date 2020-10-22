@@ -3,7 +3,9 @@ import pyreadr
 import argparse
 
 def to_pandas(filename):
+    print(filename)
     df = pyreadr.read_r(filename)[None]
+    print(df)
     df = df.set_index(df.columns[0])
     old_index = df.index.tolist()
     new_index = list(map(lambda x:x.split('_')[-1], old_index))
