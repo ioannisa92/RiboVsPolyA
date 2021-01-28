@@ -33,9 +33,17 @@ def gene_checker(input_file):
     new_input_file; pandas df - shape (samples x genes)
     '''
     
-    classifier_genes = np.loadtxt('ClassifierGenes.txt', dtype='str')
-    new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
-    
+    classifier_genes = np.loadtxt('./data_test/ClassifierGenes.txt', dtype='str')
+    classifier_genes_meanexpr = np.load('./data_test/ClassifierGenes_MeanExpr.npy', allow_pickle=True).item()
+    common_genes = set(classifier_genes).intersection(input_file.columns)
+    uncommon_genes = set(classifier_genes).difference(input_file.columns)
+    #new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
+    print(len(common_genes ))
+    for gene in uncommon_genes:
+        input_file[gene] = [classifier_genes_meanexpr[gene]]*input_file.shape[0]
+
+    new_input_file = input_file.T.loc[classifier_genes].T
+
     # will fill genes that do not exist in the input with zero
     # if no NAN values, none will be filled
     new_input_file = new_input_file.fillna(0) 
@@ -43,12 +51,13 @@ def gene_checker(input_file):
     return new_input_file
      
 def main():
-    PATH = os.getcwd()
+    #PATH = os.getcwd()
 
     ########----------------------Command line arguments--------------------##########
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
 
     parser.add_argument('-i', '--input', default=None, type=str, required=True, help='Input expression file (samples x genes')
+    parser.add_argument('-model', '--MODEL', type=str, required=False, default='./models/RiboVsPoly_balanced_max_depth_2.sav', help='Path to saved model')
     parser.add_argument('-o', '--output', default='out.tsv', type=str, required=False, help='TSV Output prediction file')
     args=parser.parse_args()
 
@@ -56,7 +65,8 @@ def main():
 
     expr_input = args.input
     out = args.output
-    
+    model = args.MODEL
+
     print('reading input...') 
     expr_input = pd.read_csv(expr_input, sep='\t', index_col=0)
 
@@ -67,7 +77,7 @@ def main():
     print(expr_input.shape)
 
     print('applying model...')
-    model = pickle.load(open(PATH+'/RiboVsPoly_unbalanced.sav', 'rb'))
+    model = pickle.load(open(model, 'rb'))
     print(model)
     
     predictions = model.predict(expr_input)
