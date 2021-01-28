@@ -34,12 +34,13 @@ def gene_checker(input_file):
     '''
     
     classifier_genes = np.loadtxt('./data_test/ClassifierGenes.txt', dtype='str')
+    classifier_genes_meanexpr = np.load('./data_test/ClassifierGenes_MeanExpr.npy', allow_pickle=True).item()
     common_genes = set(classifier_genes).intersection(input_file.columns)
     uncommon_genes = set(classifier_genes).difference(input_file.columns)
     #new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
-    
+    print(len(common_genes ))
     for gene in uncommon_genes:
-        input_file[gene] = [0]*input_file.shape[0]
+        input_file[gene] = [classifier_genes_meanexpr[gene]]*input_file.shape[0]
 
     new_input_file = input_file.T.loc[classifier_genes].T
 
@@ -56,7 +57,7 @@ def main():
     parser = argparse.ArgumentParser(description="Arguments for preranked an single sample GSEA")
 
     parser.add_argument('-i', '--input', default=None, type=str, required=True, help='Input expression file (samples x genes')
-    parser.add_argument('-model', '--MODEL', type=str, required=False, default='./models/RiboVsPoly_balanced_max_depth_1.sav', help='Path to saved model')
+    parser.add_argument('-model', '--MODEL', type=str, required=False, default='./models/RiboVsPoly_balanced_max_depth_2.sav', help='Path to saved model')
     parser.add_argument('-o', '--output', default='out.tsv', type=str, required=False, help='TSV Output prediction file')
     args=parser.parse_args()
 
