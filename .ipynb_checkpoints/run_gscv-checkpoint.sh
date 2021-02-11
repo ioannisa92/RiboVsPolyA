@@ -1,0 +1,1 @@
+python ./scripts/RF_cv.py -X ./data_test/MergedData_Balanced.tsv -Y ./data_test/MergedLabels_Balanced.tsv -grid_search -model_out ./models/rf_gscv_best.sav -results_out ./results/rf_gscv_results.npy

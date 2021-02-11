@@ -89,7 +89,7 @@ if __name__ == "__main__":
     parser.add_argument('-cv', '--CV', action='store_true', required=False, help='whether to perform cross validation')
     parser.add_argument('-grid_search', '--GRIDCV', action='store_true', required=False, help='whether to perform parameter selection')
     parser.add_argument('-model_out', '--model_file', default='model.sav', type=str, required=False, help='model filename (full path). Use with -save_best')
-    parser.add_argument('-results_out', '--results_file', default='model.sav', type=str, required=False, help='resukts filename (full path)')
+    parser.add_argument('-results_out', '--results_file', default='out.npy', type=str, required=False, help='resukts filename (full path)')
     args=parser.parse_args()
     ########----------------------Command line arguments--------------------##########
 
