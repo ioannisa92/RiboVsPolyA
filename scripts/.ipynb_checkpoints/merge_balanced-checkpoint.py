@@ -107,7 +107,7 @@ for disease in desired_prevalence.index:
     if sample <=n:
         # if number of riboD samples belogning to disease is less than polyA samples belong to disease
         # then sample from polyA samples as big as the number of samples in riboD 
-        disease_subsample = poly_disease_common.loc[poly_clinical_disease_common.disease==disease].sample(n=sample)
+        disease_subsample = poly_disease_common.loc[poly_clinical_disease_common.disease==disease].sample(n=sample, random_state=42)
         
     else:
         disease_subsample = poly_disease_common.loc[poly_clinical_disease_common.disease==disease]
@@ -138,7 +138,7 @@ all_labels = ribo_labels+poly_labels
 
 merged_disease_common = pd.concat([ribo_disease_common, poly_subsampled_final], axis=0)
 # merged_disease_common = merged_disease_common.T.loc[classifier_genes].T
-merged_disease_common = merged_disease_common.T.loc[merged_disease_common.var().sort_values().index[:5000]].T
+merged_disease_common = merged_disease_common.T.loc[merged_disease_common.var().sort_values().index[-5000:]].T
 print('final_shape', merged_disease_common.shape)
 
 classifier_genes = merged_disease_common.columns
