@@ -121,7 +121,9 @@ if __name__ == "__main__":
         print("saving resutls...")
         np.save(results_out,results)
         print(best_params)
-
+        #best params:
+        # {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
+        
         # unbalanced best params 
         #RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
         #                       criterion='gini', max_depth=1, max_features='auto',
