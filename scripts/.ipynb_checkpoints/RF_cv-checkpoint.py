@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     if grid_search:
         model=RandomForestClassifier()
-        param_grid={'n_estimators':np.arange(100,2000,100), 'max_depth': np.arange(1,10,1s), "min_samples_leaf":np.arange(1,10,1),"min_samples_split":np.arange(2,20,2)}
+        param_grid={'n_estimators':np.arange(100,2000,100), 'max_depth': np.arange(1,10,1), "min_samples_leaf":np.arange(1,10,1),"min_samples_split":np.arange(2,20,2)}
         results, best_model, best_params = gscv(X,Y, model, parameters=param_grid, jobs=13)
         print("saving best model...")
         pickle.dump(best_model, open(model_fn, 'wb'))
