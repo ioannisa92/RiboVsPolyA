@@ -13,7 +13,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 global DATADIR
-DATADIR = './data_test/'
+DATADIR = './data/'
 
 
 # ## Loading PolyA and RiboD gene expression data

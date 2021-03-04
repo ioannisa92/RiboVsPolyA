@@ -1,6 +1,6 @@
 DATA=./SRP_data/refine_bio_SRP_data/
 TREEHOUSEDATA=./SRP_data/treehouse_SRP_data/
-MAXDEPTH=3
+MAXDEPTH=2
 
 python ./scripts/RF_deploy.py -i ${TREEHOUSEDATA}/SRP055411/SRP055411_log2TPM_plus1_HUGO.tsv -o ./results/SRP055411_TPM_log2_plus_1.TH.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
 
