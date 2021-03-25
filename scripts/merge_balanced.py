@@ -25,11 +25,6 @@ poly = pd.read_csv(DATADIR+'TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_20
 ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0).T # (sampls,genes)
 
 
-poly.shape
-ribo.shape
-
-
-
 poly_clinical = pd.read_csv(DATADIR+'clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
 ribo_clinical = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-25.tsv', sep='\t', index_col=0)
 
@@ -115,7 +110,7 @@ for disease in desired_prevalence.index:
     poly_subsampled +=[disease_subsample]
 
 poly_subsampled_final = pd.concat(poly_subsampled, axis=0) # subsampled polyA dataframe based on riboD disease prevalence
-poly_clinical_disease_common_sumbsampled_final = poly_clinical_disease_common.loc[poly_subsampled_final.index] # modifying polyA clinical file to match the subsampled samples
+poly_clinical_disease_common_subsampled_final = poly_clinical_disease_common.loc[poly_subsampled_final.index] # modifying polyA clinical file to match the subsampled samples
 
 
 assert poly_subsampled_final.columns.values.tolist() == ribo_disease_common.columns.values.tolist()
@@ -150,12 +145,15 @@ merged_labels = pd.DataFrame(all_labels, index = merged_disease_common.index, co
 merged_disease_common.to_csv(DATADIR+'MergedData_Balanced.tsv', sep='\t')
 merged_labels.to_csv(DATADIR+'MergedLabels_Balanced.tsv', sep='\t')
 
+#saving mean expression of each gene from the train data
+merged_disease_common.mean(axis=0).to_csv(DATADIR+'ClassifierGenes_MeanExpr.npy', sep='\t')
+
 ribo_disease_common.T.loc[classifier_genes].T.to_csv(DATADIR+"Ribo.tsv", sep="\t")
 poly_subsampled_final.T.loc[classifier_genes].T.to_csv(DATADIR+'Poly_reduced.tsv', sep='\t')
 
 # ## Now diseases are balanced in both datasets
 
-(poly_clinical_disease_common_sumbsampled_final.disease.value_counts()/poly_clinical_disease_common_sumbsampled_final.disease.value_counts().sum()).plot(kind='barh')
+(poly_clinical_disease_common_subsampled_final.disease.value_counts()/poly_clinical_disease_common_subsampled_final.disease.value_counts().sum()).plot(kind='barh')
 plt.title('Final Poly Disease Prevalence', fontsize=15)
 plt.savefig('./plots/Final_PolyA_Disease_Prevalence')
 plt.close()

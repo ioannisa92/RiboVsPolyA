@@ -3,11 +3,13 @@ DATADIR="./data/"
 RESDIR="./results/"
 PLOTDIR="./plots/"
 
+export: $PYTHONPATH=${pwd}/scripts/:$PYTHONPATH
+
 if [ -d "$DATADIR" ]; then
   # Take action if $DIR exists. #
   echo "${DATADIR} already exists"
 else
-    mkdir data_test
+    mkdir data
 fi
 
 if [ -d "$RESDIR" ]; then
@@ -23,6 +25,15 @@ if [ -d "$PLOTDIR" ]; then
 else
     mkdir plots
 fi
+
+if [ -d "$MODELDIR" ]; then
+  # Take action if $DIR exists. #
+  echo "${MODELDIR} already exists"
+else
+    mkdir models
+fi
+
+#TODO: need to add export PYTHONPATH=/mnt/github/RiboVsPolyA/scripts/:$PYTHONPATH to .bashrc of clone
 
 echo Installing requirements...
 python -m pip install --no-cache-dir -r requirements.txt
