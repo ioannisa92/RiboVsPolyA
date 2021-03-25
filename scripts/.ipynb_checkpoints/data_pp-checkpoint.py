@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
     
 def ensembl_to_hugo( df):
 
-    conversion_file='../data/ensembl_hugo.tsv'
+    conversion_file='../data/EnsGeneID_Hugo_Observed_Conversions.txt'
 
     gene_length=dict()
     ensemble_to_hugo_dct=dict()
