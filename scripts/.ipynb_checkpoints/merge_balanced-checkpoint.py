@@ -146,7 +146,7 @@ merged_disease_common.to_csv(DATADIR+'MergedData_Balanced.tsv', sep='\t')
 merged_labels.to_csv(DATADIR+'MergedLabels_Balanced.tsv', sep='\t')
 
 #saving mean expression of each gene from the train data
-merged_disease_common.mean(axis=0).to_csv(DATADIR+'ClassifierGenes_MeanExpr.npy', sep='\t')
+np.save(DATADIR+'ClassifierGenes_MeanExpr.npy',merged_disease_common.mean(axis=0).to_dict())
 
 ribo_disease_common.T.loc[classifier_genes].T.to_csv(DATADIR+"Ribo.tsv", sep="\t")
 poly_subsampled_final.T.loc[classifier_genes].T.to_csv(DATADIR+'Poly_reduced.tsv', sep='\t')
