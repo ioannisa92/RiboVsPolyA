@@ -4,7 +4,7 @@
 # # The following notebook merges PolyA and RiboD datasets
 # * Datasets are unbalanced in terms of disease
 # * PolyA datasets has many more samples compared to RiboD
-# * Balacing of diseases is done based on the disease prevalence of RiboD
+# * Balancing of diseases is done based on the disease prevalence of RiboD
 # 
 
 from data_pp import *
