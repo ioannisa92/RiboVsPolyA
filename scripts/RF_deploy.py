@@ -33,8 +33,8 @@ def gene_checker(input_file):
     new_input_file; pandas df - shape (samples x genes)
     '''
     
-    classifier_genes = np.loadtxt('./data_test/ClassifierGenes.txt', dtype='str')
-    classifier_genes_meanexpr = np.load('./data_test/ClassifierGenes_MeanExpr.npy', allow_pickle=True).item()
+    classifier_genes = np.loadtxt('./data/ClassifierGenes.txt', dtype='str')
+    classifier_genes_meanexpr = np.load('./data/ClassifierGenes_MeanExpr.npy', allow_pickle=True).item()
     common_genes = set(classifier_genes).intersection(input_file.columns)
     uncommon_genes = set(classifier_genes).difference(input_file.columns)
     #new_input_file = input_file.T.loc[classifier_genes].T # seleting classifier selected genes in the classifier determined order
