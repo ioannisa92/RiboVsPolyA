@@ -1,6 +1,7 @@
 REFINEBIODATA="./data/refine_bio_SRP_data/"
 TREEHOUSEDATA="./data/treehouse_SRP_data/"
 
+
 if [ -d "$REFINEBIODATA" ]; then
   # Take action if $DIR exists. #
   echo "${REFINEBIODATA} already exists"
@@ -53,3 +54,4 @@ wget -O ${REFINEBIODATA}SRP130971_log2TPM_plus1_HUGO.tsv https://ndownloader.fig
 wget -O ${REFINEBIODATA}SRP132968_log2TPM_plus1_HUGO.tsv https://ndownloader.figshare.com/files/27193805
 
 wget -O ${REFINEBIODATA}SRP183700_log2TPM_plus1_HUGO.tsv https://ndownloader.figshare.com/files/27193808
+

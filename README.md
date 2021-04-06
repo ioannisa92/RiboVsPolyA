@@ -7,12 +7,28 @@ In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/e
   * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
   * The notebooks also have the corresponding script version under [scripts](https://github.com/ioannisa92/RiboVsPolyA/tree/master/scripts)
   
+# Installation
+Our model runs with python3. We recommend to use a recent version of python3 (eg. python>=3.6). \
+We recommend using conda to create a virtual environment. \
+Follow the steps bellow to install this repo:
 
-Running the following :
+```
+conda create -n ribopolya python=3.6
+conda activate ribopolya
+git clone https://github.com/ioannisa92/RiboVsPolyA.git
+```
+
+Running the following to install and download the necessary data:
 ```
 bash setup.sh
 ```
-will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
+will download Treehouse data and merge them in the `data` dir.
+
+# Steps to Reproduce our Results
+1. `bash run_gscv.sh`
+2. Run `RF_CV.ipynb` to create models with varying `max_depth`
+3. Run `openPBTA_riboD.ipynb` and `openPBTA_polyA.ipynb` to run each `max_depth` model on openPBTA
+4. `bash run_SRP.sh` to run the RF model on the external SRP data
 
 ---
 

@@ -121,6 +121,7 @@ if __name__ == "__main__":
         print("saving resutls...")
         np.save(results_out,results)
         print(best_params)
+        np.save('rf_gscv_best_params.npy', best_params)
         #best params:
         # {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
         
