@@ -13,8 +13,8 @@ We recommend using conda to create a virtual environment. \
 Follow the steps bellow to install this repo:
 
 ```
-conda create -n ndmi_reproduce python=3.6.0
-git clone https://github.com/ioannisa92/Nanopore_modification_inference.git
+conda create -n ribopolya python=3.6.0
+git clone https://github.com/ioannisa92/RiboVsPolyA.git
 python setup.py install
 ```
 
