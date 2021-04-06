@@ -21,7 +21,13 @@ Running the following to install and download the necessary data:
 ```
 bash setup.sh
 ```
-will download Treehouse data and make balanced and unbalanced datasets and will create a dir called data_test. All analyses under the examples folder can be reproduced based on these datasets.
+will download Treehouse data and merge them in the `data` dir.
+
+# Steps to Reproduce our Results
+1. `bash run_gscv.sh`
+2. Run `RF_CV.ipynb` to create models with varying `max_depth`
+3. Run `openPBTA_riboD.ipynb` and `openPBTA_polyA.ipynb` to run each `max_depth` model on openPBTA
+4. `bash run_SRP.sh` to run the RF model on the external SRP data
 
 ---
 
