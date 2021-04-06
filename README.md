@@ -15,10 +15,9 @@ Follow the steps bellow to install this repo:
 ```
 conda create -n ribopolya python=3.6.0
 git clone https://github.com/ioannisa92/RiboVsPolyA.git
-python setup.py install
 ```
 
-Running the following :
+Running the following to install and download the necessary data:
 ```
 bash setup.sh
 ```
