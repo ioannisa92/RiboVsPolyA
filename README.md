@@ -13,7 +13,8 @@ We recommend using conda to create a virtual environment. \
 Follow the steps bellow to install this repo:
 
 ```
-conda create -n ribopolya python=3.6.0
+conda create -n ribopolya python=3.6
+conda activate ribopolya
 git clone https://github.com/ioannisa92/RiboVsPolyA.git
 ```
 
