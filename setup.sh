@@ -56,9 +56,9 @@ wget --quiet -O ${DATADIR}TreehousePEDv9_Ribodeplete_clinical_metadata.2019-03-2
 #wget --quiet -O ${DATADIR}pbta-gene-expression-rsem-tpm.polya.rds  https://s3.amazonaws.com/kf-openaccess-us-east-1-prd-pbta/data/release-v16-20200320/pbta-gene-expression-rsem-tpm.polya.rds
 
 #echo Converting openPBTA files to tsv...
-#python ./scripts/rds_to_pandas.py -i ${DATADIR}pbta-gene-expression-rsem-tpm.stranded.rds -o ${DATADIR}pbta-gene-expression-rsem-tpm.stranded.tsv
+#python ./scripts/rds_to_pandas.py -i ${DATADIR}pbta-gene-expression-rsem-tpm.stranded.rds -o ${DATADIR}pbta-gene-expression-rsem-log2tpm_plus_1.stranded.tsv
 
-#python ./scripts/rds_to_pandas.py -i ${DATADIR}pbta-gene-expression-rsem-tpm.polya.rds -o ${DATADIR}pbta-gene-expression-rsem-tpm.polya.tsv
+#python ./scripts/rds_to_pandas.py -i ${DATADIR}pbta-gene-expression-rsem-tpm.polya.rds -o ${DATADIR}pbta-gene-expression-rsem-log2tpm_plus_1.polya.tsv
 
 echo Creating Balanced dataset...
 #run script that selects random samples from PolyA to create MergedData_reduced.tsv, and MergedLabels_reduced.tsv
