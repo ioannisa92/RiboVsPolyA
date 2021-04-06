@@ -7,6 +7,16 @@ In the [examples folder](https://github.com/ioannisa92/RiboVsPolyA/tree/master/e
   * Training Random Forest (RF) model on unbalanced and balanced data. Optimisation procedure also shown
   * The notebooks also have the corresponding script version under [scripts](https://github.com/ioannisa92/RiboVsPolyA/tree/master/scripts)
   
+# Installation
+Our model runs with python3. We recommend to use a recent version of python3 (eg. python>=3.6). \
+We recommend using conda to create a virtual environment. \
+Follow the steps bellow to install this repo:
+
+```
+conda create -n ndmi_reproduce python=3.6.0
+git clone https://github.com/ioannisa92/Nanopore_modification_inference.git
+python setup.py install
+```
 
 Running the following :
 ```
