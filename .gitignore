@@ -7,3 +7,6 @@ SRP_data/
 SRP_resutls/
 plots/
 data/
+.gitignore
+/.ipynb_checkpoints/
+/__pycache__/
