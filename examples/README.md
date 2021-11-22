@@ -23,8 +23,5 @@ Two classifiers were developed:
 # Selecting the best model
 [Cross Validation Analysis Notebook](https://github.com/ioannisa92/RiboVsPolyA/blob/master/examples/RF_train_Unbalanced.ipynb) shows cross validation analysis with the balanced RF classifier. Best model across folds is selected based on best performance.
 
-# openPBTA PolyA - Applied Classifier
-[openPBTA_polyA.ipynb](https://github.com/ioannisa92/RiboVsPolyA/blob/master/examples/openPBTA_polyA.ipynb) shows application  and performance of both blanced and unbalanced models on the openPBTA polyA cohort.
-
-# openPBTA RiboD - Applied Classifier
-[openPBTA_riboD.ipynb](https://github.com/ioannisa92/RiboVsPolyA/blob/master/examples/openPBTA_riboD.ipynb) shows application  and performance of both blanced and unbalanced models on the openPBTA riboD cohort.
+# openPBTA PolyA RiboD - Applied Classifier
+[openPBTA_polyA_riboD.ipynb](https://github.com/ioannisa92/RiboVsPolyA/blob/master/examples/openPBTA_polyA_riboD.ipynb) shows application and performance of both blanced and unbalanced models on the openPBTA polyA and riboD cohort.
