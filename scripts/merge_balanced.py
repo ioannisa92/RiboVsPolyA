@@ -3,9 +3,8 @@
 
 # # The following notebook merges PolyA and RiboD datasets
 # * Datasets are unbalanced in terms of disease
-# * PolyA datasets has many more samples compared to RiboD
+# * PolyA dataset has many more samples compared to RiboD
 # * Balancing of diseases is done based on the disease prevalence of RiboD
-# 
 
 from data_pp import *
 import pandas as pd
@@ -22,7 +21,7 @@ DATADIR = './data/'
 # the following files were prepared during setup.py
 # both Poly.tsv and Ribo.tsv are described by the same genes
 poly = pd.read_csv(DATADIR+'TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv', sep='\t', index_col=0).T # (samples,genes)
-ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0).T # (sampls,genes)
+ribo = pd.read_csv(DATADIR+'TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv', sep='\t', index_col=0).T # (samples,genes)
 
 
 poly_clinical = pd.read_csv(DATADIR+'clinical_TumorCompendium_v10_PolyA_2019-07-25.tsv', sep='\t', index_col=0)
@@ -43,7 +42,6 @@ ribo_clinical_dropped = ribo_clinical.loc[~ribo_clinical.disease.str.contains('|
 # ## Collecting common diseases from PolyA and RiboD
 
 common_diseases = set(ribo_clinical_dropped.disease.value_counts().index).intersection(poly_clinical_dropped.disease.value_counts().index)
-
 
 
 # Displaying common diseases
@@ -121,21 +119,23 @@ assert poly_subsampled_final.columns.values.tolist() == ribo_disease_common.colu
 # * Ribo samples = 1
 # * Poly samples = 0
 
-# TODO: add variance filtering (5000 genes) for the merged expression DF
 
 ribo_labels = ribo_disease_common.shape[0]*[1]
 poly_labels = poly_subsampled_final.shape[0]*[0]
 all_labels = ribo_labels+poly_labels
 
 
-
+# ## Subset to 5000 genes with highest variance
+# * Using the full data from 58581 genes adds non-informative features
+# * This makes it more difficult to train our classifier models
+# * We can create better models using the genes with highest variance  
 
 
 merged_disease_common = pd.concat([ribo_disease_common, poly_subsampled_final], axis=0)
-# merged_disease_common = merged_disease_common.T.loc[classifier_genes].T
 merged_disease_common = merged_disease_common.T.loc[merged_disease_common.var().sort_values().index[-5000:]].T
 print('final_shape', merged_disease_common.shape)
 
+# save highest variance genes
 classifier_genes = merged_disease_common.columns
 np.savetxt(DATADIR+'ClassifierGenes.txt',classifier_genes, fmt='%s')
 

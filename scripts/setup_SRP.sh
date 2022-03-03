@@ -1,6 +1,6 @@
+# Create data folders
 REFINEBIODATA="./data/refine_bio_SRP_data/"
 TREEHOUSEDATA="./data/treehouse_SRP_data/"
-
 
 if [ -d "$REFINEBIODATA" ]; then
   # Take action if $DIR exists. #

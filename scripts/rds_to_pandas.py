@@ -1,4 +1,3 @@
-
 import pyreadr
 import argparse
 import numpy as np
@@ -12,10 +11,7 @@ def to_pandas(filename):
     new_index = list(map(lambda x:x.split('_')[-1], old_index))
     rename_dict = dict(zip(old_index, new_index))
     df = df.rename(index=rename_dict)
-#     del df.index.name 
     return df.T # (samples, genes)
-
-
     
 if __name__ == '__main__':
     

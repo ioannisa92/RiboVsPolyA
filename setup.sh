@@ -1,10 +1,8 @@
-# create data dolder
+# Create data folders
 DATADIR="./data/"
 RESDIR="./results/"
 PLOTDIR="./plots/"
 MODELDIR="./models/"
-
-export: $PYTHONPATH=${pwd}/scripts/:$PYTHONPATH
 
 if [ -d "$DATADIR" ]; then
   # Take action if $DIR exists. #
@@ -34,13 +32,11 @@ else
     mkdir $MODELDIR
 fi
 
-#TODO: need to add export PYTHONPATH=/mnt/github/RiboVsPolyA/scripts/:$PYTHONPATH to .bashrc of clone
-
 echo Installing requirements...
 python -m pip install --no-cache-dir -r requirements.txt
 
 echo Downloading Expression and Clinical PolyA and RiboD files...
-# Download Treehouse PolyA, RiboD expression files
+# Download Treehouse compendium PolyA, RiboD expression files
 wget --quiet --show-progress -O ${DATADIR}TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv https://xena.treehouse.gi.ucsc.edu/download/TumorCompendium_v10_PolyA_hugo_log2tpm_58581genes_2019-07-25.tsv
 
 wget --quiet --show-progress -O ${DATADIR}TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv https://xena.treehouse.gi.ucsc.edu/download/TreehousePEDv9_Ribodeplete_unique_hugo_log2_tpm_plus_1.2019-03-25.tsv
@@ -66,7 +62,8 @@ echo Creating Balanced dataset...
 #run script that selects random samples from PolyA to create MergedData_reduced.tsv, and MergedLabels_reduced.tsv
 python ./scripts/merge_balanced.py
 
+echo Creating logistic classifier...
+#run script that creates logistic classifier
+python ./scripts/logistic_classifier.py
 
 echo DONE
-# make notebooks under examples to take these files as input
-
