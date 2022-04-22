@@ -154,12 +154,18 @@ poly_subsampled_final.T.loc[classifier_genes].T.to_csv(DATADIR+'Poly_reduced.tsv
 # ## Now diseases are balanced in both datasets
 
 (poly_clinical_disease_common_subsampled_final.disease.value_counts()/poly_clinical_disease_common_subsampled_final.disease.value_counts().sum()).plot(kind='barh')
-plt.title('Final Poly Disease Prevalence', fontsize=15)
-plt.savefig('./plots/Final_PolyA_Disease_Prevalence')
+plt.title('Final PolyA Disease Prevalence', fontsize=15)
+figure = plt.gcf()
+figure.set_size_inches(11, 8.5)
+plt.autoscale()
+plt.savefig('./plots/Final_PolyA_Disease_Prevalence', dpi=300)
 plt.close()
 
 (ribo_clinical_disease_common.disease.value_counts()/ribo_clinical_disease_common.disease.value_counts().sum()).plot(kind='barh')
-plt.title('Final Ribo Disease Prevalence', fontsize=15)
-plt.savefig('./plots/Final_RiboD_Disease_Prevalence')
+plt.title('Final RiboD Disease Prevalence', fontsize=15)
+figure = plt.gcf()
+figure.set_size_inches(11, 8.5)
+plt.autoscale()
+plt.savefig('./plots/Final_RiboD_Disease_Prevalence', dpi=300)
 plt.close()
 

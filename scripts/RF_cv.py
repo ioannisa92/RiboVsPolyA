@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     if grid_search:
         model=RandomForestClassifier()
-        param_grid={'n_estimators':np.arange(100,2000,100), 'max_depth': np.arange(1,10,1), "min_samples_leaf":np.arange(1,10,1),"min_samples_split":np.arange(2,20,2)}
+        param_grid={'n_estimators':np.arange(100,2000,100), 'max_depth': np.arange(1,10,1), "min_samples_leaf":np.arange(1,10,1),"min_samples_split":np.arange(2,20,2),"random_state":np.array([42])}
         results, best_model, best_params = gscv(X,Y, model, parameters=param_grid, jobs=13)
         print("saving best model...")
         pickle.dump(best_model, open(model_fn, 'wb'))
@@ -122,26 +122,3 @@ if __name__ == "__main__":
         np.save(results_out,results)
         print(best_params)
         np.save('./results/rf_gscv_best_params.npy', best_params)
-        #best params:
-        # {'max_depth': 3, 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
-        
-        # unbalanced best params 
-        #RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
-        #                       criterion='gini', max_depth=1, max_features='auto',
-        #                       max_leaf_nodes=None, max_samples=None,
-        #                       min_impurity_decrease=0.0, min_impurity_split=None,
-        #                       min_samples_leaf=3, min_samples_split=2,
-        #                       min_weight_fraction_leaf=0.0, n_estimators=700,
-        #                       n_jobs=None, oob_score=False, random_state=None,
-        #                       verbose=0, warm_start=False)
-
-
-        #balanced best params
-        #RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
-        #                       criterion='gini', max_depth=7, max_features='auto',
-        #                       max_leaf_nodes=None, max_samples=None,
-        #                       min_impurity_decrease=0.0, min_impurity_split=None,
-        #                       min_samples_leaf=1, min_samples_split=2,
-        #                       min_weight_fraction_leaf=0.0, n_estimators=500,
-        #                       n_jobs=None, oob_score=False, random_state=None,
-        #                       verbose=0, warm_start=False)
