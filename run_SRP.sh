@@ -1,7 +1,14 @@
 REFINEBIODATA=./data/refine_bio_SRP_data/
 TREEHOUSEDATA=./data/treehouse_SRP_data/
 RF_RESULTS=./results/SRP/random_forest/
-MAXDEPTH=3
+MAXDEPTH=2
+
+if [ -d "$RF_RESULTS" ]; then
+  # Take action if $RF_RESULTS exists. #
+  echo "${RF_RESULTS} already exists"
+else
+    mkdir -p $RF_RESULTS
+fi
 
 python ./scripts/RF_deploy.py -i ${TREEHOUSEDATA}/SRP055411_log2TPM_plus1_HUGO.tsv -o ${RF_RESULTS}SRP055411_TPM_log2_plus_1.TH.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
 

@@ -3,6 +3,13 @@ TREEHOUSEDATA=./data/treehouse_SRP_data/
 MODEL=./models/logistic_regression_model.sav
 LOGISTIC_CLASSIFIER=./results/SRP/logistic_classifier/
 
+if [ -d "$LOGISTIC_CLASSIFIER" ]; then
+  # Take action if $LOGISTIC_CLASSIFIER exists. #
+  echo "${LOGISTIC_CLASSIFIER} already exists"
+else
+    mkdir -p $LOGISTIC_CLASSIFIER
+fi
+
 python ./scripts/RF_deploy.py -i ${TREEHOUSEDATA}SRP055411_log2TPM_plus1_HUGO.tsv -o ${LOGISTIC_CLASSIFIER}SRP055411_TPM_log2_plus_1.TH.balanced_Logistic_results.tsv -model ${MODEL}
 
 python ./scripts/RF_deploy.py -i ${TREEHOUSEDATA}SRP132968_log2TPM_plus1_HUGO.tsv -o ${LOGISTIC_CLASSIFIER}SRP132968_TPM_log2_plus_1.TH.balanced_Logistic_results.tsv -model ${MODEL}
