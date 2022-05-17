@@ -36,6 +36,8 @@ python ./scripts/RF_deploy.py -i ${REFINEBIODATA}/SRP058841_log2TPM_plus1_HUGO.t
 
 python ./scripts/RF_deploy.py -i ${REFINEBIODATA}/SRP130971_log2TPM_plus1_HUGO.tsv -o ${RF_RESULTS}SRP130971_TPM_log2_plus_1.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
 
+python ./scripts/RF_deploy.py -i ${REFINEBIODATA}/SRP064410_log2TPM_plus1_HUGO.tsv -o ${RF_RESULTS}SRP064410_TPM_log2_plus_1.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
+
 python ./scripts/RF_deploy.py -i ${REFINEBIODATA}/SRP026013_log2TPM_plus1_HUGO.tsv -o ${RF_RESULTS}SRP026013_TPM_log2_plus_1.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
 
 python ./scripts/RF_deploy.py -i ${REFINEBIODATA}/SRP132968_log2TPM_plus1_HUGO.tsv -o ${RF_RESULTS}SRP132968_TPM_log2_plus_1.balanced_maxdepth${MAXDEPTH}_results.tsv -model ./models/RiboVsPoly_balanced_max_depth_${MAXDEPTH}.sav
